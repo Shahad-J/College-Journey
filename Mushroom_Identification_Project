@@ -1,0 +1,90 @@
+/*this program is implemented by Reem Alharbi - Shahad Al johani - Heba Almehdar 
+to identify some types of edible mushrooms.*/
+
+%finding mushroom type%
+
+mushroom_type(Type, Size, Color, Shape) :-
+    mushroom(Type),
+    size(Type, Size),
+    color(Type, Color),
+    shape(Type, Shape).
+
+ask_mushroom_type :-
+    write('What is the size of the mushroom?'),
+    read(Size),
+    write('What is the color of the mushroom?'),
+    read(Color),
+    write('What is the shape of the mushroom?'),
+    read(Shape),
+    mushroom_type(Type, Size, Color, Shape),
+    write('it is a '), write(Type), write(' mushroom').
+
+%edibles list%
+
+is_it_edible(mushroom(X)):- list_of_edible_mushrooms(T), member(mushroom(X), T).
+
+list_of_edible_mushrooms([mushroom(morel), mushroom(button), mushroom(shiitake), mushroom(porcini), mushroom(chanterelle), mushroom(oyster), mushroom(portobello), mushroom(truffle)]).
+
+%mushroom rules%
+
+mushroom(button):- size(X, medium), color(X, white), shape(X, domed).
+mushroom(shiitake):- size(X, large), color(X, dark_brown), shape(X, umbrella).
+mushroom(morel):- size(X, large), ( color(X, black), color(X, brownish_gray), color(X, yellow) ), shape(X, oblong).
+mushroom(truffle):- size(X, medium), ( color(X, black), color(X, dark_brown) ), shape(X, round).
+mushroom(portobello):- size(X, large), color(X, brownish_gray), shape(X, round).
+mushroom(oyster):- size(X, medium), color(X, white), shape(X, oyster_shaped).
+mushroom(chanterelle):- size(X, small), ( color(X, yellow) , color(X, orange), color(X, red) ), shape(X, wavy_cap).
+mushroom(porcini):- size(X, medium), color(X, reddish_brown), shape(X, semi_circle).
+
+
+%facts%
+
+%sizes&
+size(shiitake, large).
+size(morel, large).
+size(portobello, large).
+
+size(button, medium).
+size(oyster, medium).
+size(porcini, medium).
+size(truffle, medium).
+
+size(chanterelle, small).
+
+%colors%
+color(button, white).
+color(oyster, white).
+
+color(morel, black).
+color(truffle, black).
+
+color(shiitake, dark_brown).
+color(truffle, dark_brown).
+
+color(morel, brownish_gray).
+color(portobello, brownish_gray).
+
+color(porcini, reddish_brown).
+
+color(morel,yellow).
+color(chanterelle,yellow).
+
+color(chanterelle,orange).
+
+color(chanterelle,red).
+
+%shapes%
+shape(button, domed).
+
+shape(portobello, round).
+shape(truffle, round).
+
+shape(shiitake, umbrella).
+
+shape(oyster, oyster_shaped).
+
+shape(porcini, semi_circle).
+
+shape(morel, oblong).
+
+shape(chanterelle, wavy_cap).
